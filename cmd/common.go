@@ -62,7 +62,9 @@ func GetOrCreateConfigFromFile(fname string) (*ConohaCLIConfig, error) {
 	_, err := os.Stat(fname)
 
 	if os.IsNotExist(err) {
-		ret := &ConohaCLIConfig{}
+		ret := &ConohaCLIConfig{
+			Credential: &account.Credentials{},
+		}
 		ret.SaveAs(fname)
 	}
 
