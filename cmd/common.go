@@ -102,3 +102,19 @@ func LoadGlobalConfigure() error {
 
 	return err
 }
+
+//
+// Common functions
+//
+
+// includes :
+// key が keys に含まれているか調べる
+func includes(key string, keys []string) bool {
+	for _, k := range keys {
+		if key == k {
+			return true
+		}
+	}
+
+	return false
+}
