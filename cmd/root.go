@@ -18,6 +18,7 @@ func init() {
 	rootCmd.AddCommand(configCmd)
 	rootCmd.AddCommand(getEndpointCmd)
 	rootCmd.AddCommand(setEndpointCmd)
+	rootCmd.AddCommand(secgroupCmd)
 }
 
 // Execute :
