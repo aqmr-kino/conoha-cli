@@ -30,7 +30,7 @@ var configCmd = &cobra.Command{
 			fmt.Printf("user=%s\n", Configure.Credential.Auth.PasswordCredentials.Username)
 			fmt.Printf("pass=%s\n", Configure.Credential.Auth.PasswordCredentials.Password)
 			fmt.Printf("tenant=%s\n", Configure.Credential.Auth.TenantID)
-			fmt.Printf("endpoint=%s\n", Configure.Endpoint)
+			fmt.Printf("identity_endpoint=%s\n", Configure.Endpoint.Idenity)
 		} else {
 			if cmd.Flag("user").Changed {
 				Configure.Credential.Auth.PasswordCredentials.Username = configOpts.User
@@ -42,11 +42,11 @@ var configCmd = &cobra.Command{
 				Configure.Credential.Auth.TenantID = configOpts.Tenant
 			}
 			if cmd.Flag("endpoint").Changed {
-				Configure.Endpoint = configOpts.Endpoint
+				Configure.Endpoint.Idenity = configOpts.Endpoint
 			}
 
 			if configOpts.Testmode {
-				_, err := account.GetToken(Configure.Endpoint, Configure.Credential)
+				_, err := account.GetToken(Configure.Endpoint.Idenity, Configure.Credential)
 
 				if err != nil {
 					fmt.Printf("failed (%s)\n", err)
@@ -68,7 +68,7 @@ func init() {
 	configCmd.Flags().StringVarP(&configOpts.User, "user", "u", "", "set (or change) username")
 	configCmd.Flags().StringVarP(&configOpts.Pass, "pass", "p", "", "set (or change) password")
 	configCmd.Flags().StringVarP(&configOpts.Tenant, "tenent", "t", "", "set (or change) tenant-id")
-	configCmd.Flags().StringVarP(&configOpts.Endpoint, "endpoint", "e", "", "set (or change) endpoint api")
+	configCmd.Flags().StringVarP(&configOpts.Endpoint, "endpoint", "e", "", "set (or change) Conoha identity API endpoint")
 	configCmd.Flags().BoolVarP(&configOpts.Testmode, "verify", "v", false, "verifing configure by connecting to token API server with using account crediential")
 
 	configCmd.MarkPersistentFlagRequired("user")

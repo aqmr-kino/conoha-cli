@@ -9,11 +9,26 @@ import (
 	"strconv"
 )
 
+// ConohaAPIEndpoint :
+// Conoha API エンドポイント設定
+type ConohaAPIEndpoint struct {
+	Account       string
+	Compute       string
+	Volume        string
+	Database      string
+	Image         string
+	DNS           string
+	ObjectStorage string
+	Mail          string
+	Idenity       string
+	Network       string
+}
+
 // ConohaCLIConfig :
 // Conoha CLI設定
 type ConohaCLIConfig struct {
 	Credential *account.Credentials `json:"credential"`
-	Endpoint   string               `json:"endpoint"`
+	Endpoint   *ConohaAPIEndpoint   `json:"endpoint"`
 }
 
 // グローバル設定変数
@@ -64,6 +79,7 @@ func GetOrCreateConfigFromFile(fname string) (*ConohaCLIConfig, error) {
 	if os.IsNotExist(err) {
 		ret := &ConohaCLIConfig{
 			Credential: &account.Credentials{},
+			Endpoint:   &ConohaAPIEndpoint{},
 		}
 		ret.SaveAs(fname)
 	}
@@ -85,4 +101,20 @@ func LoadGlobalConfigure() error {
 	Configure = *tmp
 
 	return err
+}
+
+//
+// Common functions
+//
+
+// includes :
+// key が keys に含まれているか調べる
+func includes(key string, keys []string) bool {
+	for _, k := range keys {
+		if key == k {
+			return true
+		}
+	}
+
+	return false
 }
