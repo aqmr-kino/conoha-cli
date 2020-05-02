@@ -13,11 +13,4 @@ var secgroupCmd = &cobra.Command{
 func init() {
 	secgroupCmd.AddCommand(secgroupListCmd)
 	secgroupCmd.AddCommand(secgroupListRuleCmd)
-	// secgroup list --detail
-	// secgroup create (--name) aaa (--description) bbb
-	// secgroup delete [id] [-f]
-	// secgroup modify [id] --opt value...
-
-	// secgroup addrule [id] --rule
-	// secgroup deleterule [id] --ruleid
 }
