@@ -15,6 +15,10 @@ var rootCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(versionCmd)
+	rootCmd.AddCommand(configCmd)
+	rootCmd.AddCommand(getEndpointCmd)
+	rootCmd.AddCommand(setEndpointCmd)
+	rootCmd.AddCommand(secgroupCmd)
 }
 
 // Execute :

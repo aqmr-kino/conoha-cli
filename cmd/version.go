@@ -8,7 +8,7 @@ import (
 
 // Version :
 // バージョン情報
-var Version string = "0.0.0"
+var Version string = "0.1.0"
 
 // versionCmd :
 // バージョン情報出力コマンド
@@ -17,6 +17,6 @@ var versionCmd = &cobra.Command{
 	Short: "Version infomation",
 	Long:  `Show conoha-cli tool version`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Conoha CLI Tool v%s", Version)
+		fmt.Printf("Conoha CLI Tool v%s\n", Version)
 	},
 }
