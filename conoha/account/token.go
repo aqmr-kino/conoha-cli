@@ -73,7 +73,7 @@ func (token *ConohaToken) Request(req *api.APIRequest) ([]byte, int, error) {
 func GetToken(endpoint string, cred *Credentials) (*ConohaToken, error) {
 	var ret ConohaToken
 
-	uri := endpoint + "/v2.0/tokens"
+	uri := endpoint + "/tokens"
 
 	// 認証情報をjson化
 	data, _ := json.Marshal(cred)
