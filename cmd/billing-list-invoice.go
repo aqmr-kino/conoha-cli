@@ -17,6 +17,7 @@ var billingListInvoiceCmd = &cobra.Command{
 
 		if err != nil {
 			fmt.Printf("Error: Get API token failed. (%s)\n", err)
+			return
 		}
 
 		// 請求書取得
@@ -29,6 +30,7 @@ var billingListInvoiceCmd = &cobra.Command{
 
 		if err2 != nil {
 			fmt.Printf("Error: Get billing invoices infomation failed. (%s)\n", err2)
+			return
 		}
 
 		// 結果出力

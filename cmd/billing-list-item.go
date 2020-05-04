@@ -17,6 +17,7 @@ var billingListItemCmd = &cobra.Command{
 
 		if err != nil {
 			fmt.Printf("Error: Get API token failed. (%s)\n", err)
+			return
 		}
 
 		// アイテム取得
@@ -29,6 +30,7 @@ var billingListItemCmd = &cobra.Command{
 
 		if err2 != nil {
 			fmt.Printf("Error: Get Conoha items infomation failed. (%s)\n", err2)
+			return
 		}
 
 		// 結果出力
