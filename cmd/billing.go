@@ -13,4 +13,6 @@ var billingCmd = &cobra.Command{
 func init() {
 	billingCmd.AddCommand(billingListItemCmd)
 	billingCmd.AddCommand(billingListInvoiceCmd)
+	billingCmd.AddCommand(billingGetDepositCmd)
+	billingCmd.AddCommand(billingListDepositHistoryCmd)
 }
