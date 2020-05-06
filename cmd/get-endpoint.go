@@ -20,6 +20,7 @@ var getEndpointCmd = &cobra.Command{
 			showEndpoints = &[]string{
 				"identity",
 				"network",
+				"account",
 			}
 		}
 
@@ -30,6 +31,8 @@ var getEndpointCmd = &cobra.Command{
 				fmt.Printf("identity=%s\n", Configure.Endpoint.Idenity)
 			case "network":
 				fmt.Printf("netork=%s\n", Configure.Endpoint.Network)
+			case "account":
+				fmt.Printf("account=%s\n", Configure.Endpoint.Account)
 			default:
 				fmt.Printf("Error: unknown endpoint type \"" + e + "\"\n")
 			}
