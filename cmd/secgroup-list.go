@@ -26,6 +26,7 @@ var secgroupListCmd = &cobra.Command{
 
 		if err != nil {
 			fmt.Printf("Error: Get API token failed. (%s)\n", err)
+			return
 		}
 
 		// セキュリティグループ取得
@@ -38,6 +39,7 @@ var secgroupListCmd = &cobra.Command{
 
 		if err2 != nil {
 			fmt.Printf("Error: Get security group infomation failed. (%s)\n", err2)
+			return
 		}
 
 		// 結果出力

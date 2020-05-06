@@ -50,15 +50,17 @@ var configCmd = &cobra.Command{
 
 				if err != nil {
 					fmt.Printf("failed (%s)\n", err)
-				} else {
-					fmt.Printf("OK\n")
+					return
 				}
+
+				fmt.Printf("OK\n")
 			}
 
 			err := Configure.SaveAs(ConfigFilename)
 
 			if err != nil {
 				fmt.Println("config file save error")
+				return
 			}
 		}
 	},
