@@ -12,4 +12,5 @@ var vmCmd = &cobra.Command{
 
 func init() {
 	vmCmd.AddCommand(vmListCmd)
+	vmCmd.AddCommand(vmListFlavorCmd)
 }
