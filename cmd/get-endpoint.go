@@ -35,7 +35,7 @@ var getEndpointCmd = &cobra.Command{
 			case "account":
 				fmt.Printf("account=%s\n", Configure.Endpoint.Account)
 			case "compute":
-				fmt.Printf("coupute=%s\n", Configure.Endpoint.Compute)
+				fmt.Printf("compute=%s\n", Configure.Endpoint.Compute)
 			default:
 				fmt.Printf("Error: unknown endpoint type \"" + e + "\"\n")
 			}
