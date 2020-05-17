@@ -8,7 +8,7 @@ import (
 
 // Version :
 // バージョン情報
-var Version string = "0.2.0"
+var Version string = "0.3.0"
 
 // versionCmd :
 // バージョン情報出力コマンド
