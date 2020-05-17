@@ -20,6 +20,7 @@ func init() {
 	rootCmd.AddCommand(setEndpointCmd)
 	rootCmd.AddCommand(secgroupCmd)
 	rootCmd.AddCommand(billingCmd)
+	rootCmd.AddCommand(vmCmd)
 }
 
 // Execute :
