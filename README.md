@@ -7,6 +7,9 @@ ConoHa VPS 管理API CLIツール
     - 入金履歴確認
     - 利用サービス確認
     - 請求履歴確認
+- VM管理
+    - VM確認
+    - VMプラン(Flavor)確認
 - セキュリティグループ管理
     - セキュリティグループ確認
     - セキュリティグループルール確認
@@ -39,6 +42,9 @@ conoha-cli config --user username --password password --tenant tenand-id --endpo
 # Account
 conoha-cli set-endpoint --account https://account.hogehoge.com/v1/0123456789abcdef
 
+# Compute
+conoha-cli set-endpoint --compute https://compute.hogehoge.com/v2/0123456789abcdef
+
 # Network
 conoha-cli set-endpoint --network https://network.hogehoge.com
 ```
@@ -63,6 +69,22 @@ conoha-cli billing list-item
 #### 請求履歴確認
 ```shell
 conoha-cli billing list-invoice
+```
+
+### VM関連
+
+#### VM確認
+```shell
+# 簡易(名前+状態のみ)
+conoha-cli vm list
+
+# 詳細表示
+conoha-cli vm list --detail
+```
+
+#### VMプラン(Flavor)確認
+```shell
+conoha-cli vm list-flavor
 ```
 
 ### セキュリティグループ関連
@@ -91,6 +113,10 @@ conoha-cli secgroup list-rule --detail
 |$HOME/.conoha|アカウント情報、エンドポイント情報|
 
 ## 変更履歴
+### v0.3.0 (2020-05-17)
+- 新機能
+    - VM管理機能を追加
+
 ### v0.2.0 (2020-05-06)
 - 新機能
     - アカウント管理機能を追加
