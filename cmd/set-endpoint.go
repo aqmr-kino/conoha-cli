@@ -45,6 +45,9 @@ var setEndpointCmd = &cobra.Command{
 			if cmd.Flag("account").Changed {
 				Configure.Endpoint.Account = setEndpointOpts.Account
 			}
+			if cmd.Flag("compute").Changed {
+				Configure.Endpoint.Compute = setEndpointOpts.Compute
+			}
 
 			Configure.SaveAs(ConfigFilename)
 		}
@@ -55,8 +58,10 @@ func init() {
 	setEndpointCmd.Flags().StringVarP(&setEndpointOpts.Network, "network", "n", "", "set (or change) Conoha network service API endpoint")
 	setEndpointCmd.Flags().StringVarP(&setEndpointOpts.Idenity, "identity", "i", "", "set (or change) Conoha identity service API endpoint")
 	setEndpointCmd.Flags().StringVarP(&setEndpointOpts.Account, "account", "a", "", "set (or change) Conoha account service API endpoint")
+	setEndpointCmd.Flags().StringVarP(&setEndpointOpts.Compute, "compute", "c", "", "set (or change) Conoha compute service API endpoint")
 
 	setEndpointCmd.MarkPersistentFlagRequired("network")
 	setEndpointCmd.MarkPersistentFlagRequired("identity")
 	setEndpointCmd.MarkPersistentFlagRequired("account")
+	setEndpointCmd.MarkPersistentFlagRequired("compute")
 }
