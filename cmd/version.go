@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +15,6 @@ var versionCmd = &cobra.Command{
 	Short: "Version infomation",
 	Long:  `Show conoha-cli tool version`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Conoha CLI Tool v%s\n", Version)
+		cmd.Printf("Conoha CLI Tool v%s\n", Version)
 	},
 }
