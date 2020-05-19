@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"conoha-cli/conoha/account"
-	"fmt"
 
 	"github.com/spf13/cobra"
 )
@@ -16,7 +15,7 @@ var billingListItemCmd = &cobra.Command{
 		token, err := account.GetToken(Configure.Endpoint.Idenity, Configure.Credential)
 
 		if err != nil {
-			fmt.Printf("Error: Get API token failed. (%s)\n", err)
+			cmd.Printf("Error: Get API token failed. (%s)\n", err)
 			return
 		}
 
@@ -29,15 +28,15 @@ var billingListItemCmd = &cobra.Command{
 		item, err2 := mgr.GetItems()
 
 		if err2 != nil {
-			fmt.Printf("Error: Get Conoha items infomation failed. (%s)\n", err2)
+			cmd.Printf("Error: Get Conoha items infomation failed. (%s)\n", err2)
 			return
 		}
 
 		// 結果出力
-		fmt.Printf("%-36s %-15s %-10s %s\n", "UUID", "ServiceName", "Status", "StartAt")
+		cmd.Printf("%-36s %-15s %-10s %s\n", "UUID", "ServiceName", "Status", "StartAt")
 
 		for _, i := range item.OrderItems {
-			fmt.Printf("%-36s %-15s %-10s %s\n", i.UUID, i.ServiceName, i.ItemStatus, i.ServiceStartDate)
+			cmd.Printf("%-36s %-15s %-10s %s\n", i.UUID, i.ServiceName, i.ItemStatus, i.ServiceStartDate)
 		}
 	},
 }
