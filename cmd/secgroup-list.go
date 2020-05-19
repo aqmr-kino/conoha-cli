@@ -3,7 +3,6 @@ package cmd
 import (
 	"conoha-cli/conoha/account"
 	"conoha-cli/conoha/network"
-	"fmt"
 
 	"github.com/spf13/cobra"
 )
@@ -25,7 +24,7 @@ var secgroupListCmd = &cobra.Command{
 		token, err := account.GetToken(Configure.Endpoint.Idenity, Configure.Credential)
 
 		if err != nil {
-			fmt.Printf("Error: Get API token failed. (%s)\n", err)
+			cmd.Printf("Error: Get API token failed. (%s)\n", err)
 			return
 		}
 
@@ -38,7 +37,7 @@ var secgroupListCmd = &cobra.Command{
 		sg, err2 := mgr.GetGroups()
 
 		if err2 != nil {
-			fmt.Printf("Error: Get security group infomation failed. (%s)\n", err2)
+			cmd.Printf("Error: Get security group infomation failed. (%s)\n", err2)
 			return
 		}
 
@@ -46,28 +45,28 @@ var secgroupListCmd = &cobra.Command{
 		for _, s := range sg.SecurityGroups {
 			if len(args) == 0 || includes(s.Name, args) || includes(s.ID, args) {
 				if secgroupListOpts.DetailMode {
-					fmt.Printf("SecurityGroup: %s\n", s.Name)
-					fmt.Printf("ID           : %s\n", s.ID)
-					fmt.Printf("Description  : %s\n", s.Description)
-					fmt.Printf("Rules        :\n")
+					cmd.Printf("SecurityGroup: %s\n", s.Name)
+					cmd.Printf("ID           : %s\n", s.ID)
+					cmd.Printf("Description  : %s\n", s.Description)
+					cmd.Printf("Rules        :\n")
 
 					for _, r := range s.Rules {
-						fmt.Printf("  %s %-7s %s %d-%d %s", r.ID, r.Direction, r.Ethertype, r.PortRangeMin, r.PortRangeMax, r.Protocol)
+						cmd.Printf("  %s %-7s %s %d-%d %s", r.ID, r.Direction, r.Ethertype, r.PortRangeMin, r.PortRangeMax, r.Protocol)
 
 						if len(r.RemoteIPPrefix) != 0 {
-							fmt.Printf(" (from: %s)", r.RemoteIPPrefix)
+							cmd.Printf(" (from: %s)", r.RemoteIPPrefix)
 						}
 
 						if len(r.RemoteGroupID) != 0 {
-							fmt.Printf(" (from-secgroup: %s)", r.RemoteGroupID)
+							cmd.Printf(" (from-secgroup: %s)", r.RemoteGroupID)
 						}
 
-						fmt.Printf("\n")
+						cmd.Printf("\n")
 					}
 
-					fmt.Println()
+					cmd.Println()
 				} else {
-					fmt.Printf("%s %s\n", s.Name, s.ID)
+					cmd.Printf("%s %s\n", s.Name, s.ID)
 				}
 			}
 		}
