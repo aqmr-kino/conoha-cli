@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"conoha-cli/conoha/account"
-	"fmt"
 
 	"github.com/spf13/cobra"
 )
@@ -27,10 +26,10 @@ var configCmd = &cobra.Command{
 	Long:  `account configuration`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if cmd.Flags().NFlag() == 0 {
-			fmt.Printf("user=%s\n", Configure.Credential.Auth.PasswordCredentials.Username)
-			fmt.Printf("pass=%s\n", Configure.Credential.Auth.PasswordCredentials.Password)
-			fmt.Printf("tenant=%s\n", Configure.Credential.Auth.TenantID)
-			fmt.Printf("identity_endpoint=%s\n", Configure.Endpoint.Idenity)
+			cmd.Printf("user=%s\n", Configure.Credential.Auth.PasswordCredentials.Username)
+			cmd.Printf("pass=%s\n", Configure.Credential.Auth.PasswordCredentials.Password)
+			cmd.Printf("tenant=%s\n", Configure.Credential.Auth.TenantID)
+			cmd.Printf("identity_endpoint=%s\n", Configure.Endpoint.Idenity)
 		} else {
 			if cmd.Flag("user").Changed {
 				Configure.Credential.Auth.PasswordCredentials.Username = configOpts.User
@@ -49,17 +48,17 @@ var configCmd = &cobra.Command{
 				_, err := account.GetToken(Configure.Endpoint.Idenity, Configure.Credential)
 
 				if err != nil {
-					fmt.Printf("failed (%s)\n", err)
+					cmd.Printf("failed (%s)\n", err)
 					return
 				}
 
-				fmt.Printf("OK\n")
+				cmd.Printf("OK\n")
 			}
 
 			err := Configure.SaveAs(ConfigFilename)
 
 			if err != nil {
-				fmt.Println("config file save error")
+				cmd.Println("config file save error")
 				return
 			}
 		}

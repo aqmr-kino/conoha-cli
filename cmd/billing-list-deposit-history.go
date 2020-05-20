@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"conoha-cli/conoha/account"
-	"fmt"
 
 	"github.com/spf13/cobra"
 )
@@ -16,7 +15,7 @@ var billingListDepositHistoryCmd = &cobra.Command{
 		token, err := account.GetToken(Configure.Endpoint.Idenity, Configure.Credential)
 
 		if err != nil {
-			fmt.Printf("Error: Get API token failed. (%s)\n", err)
+			cmd.Printf("Error: Get API token failed. (%s)\n", err)
 			return
 		}
 
@@ -29,14 +28,14 @@ var billingListDepositHistoryCmd = &cobra.Command{
 		history, err2 := mgr.GetPaymentHistories()
 
 		if err2 != nil {
-			fmt.Printf("Error: Get payment history infomation failed. (%s)\n", err2)
+			cmd.Printf("Error: Get payment history infomation failed. (%s)\n", err2)
 			return
 		}
 
 		// 結果出力
-		fmt.Printf("%-12s %-8s %-20s\n", "MoneyType", "Amount", "ReceivedDate")
+		cmd.Printf("%-12s %-8s %-20s\n", "MoneyType", "Amount", "ReceivedDate")
 		for _, h := range history.Histories {
-			fmt.Printf("%-12s %8d %-20s\n", h.MoneyType, h.DepositAmount, h.ReceivedDate)
+			cmd.Printf("%-12s %8d %-20s\n", h.MoneyType, h.DepositAmount, h.ReceivedDate)
 		}
 	},
 }

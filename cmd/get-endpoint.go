@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -29,15 +27,15 @@ var getEndpointCmd = &cobra.Command{
 		for _, e := range *showEndpoints {
 			switch e {
 			case "identity":
-				fmt.Printf("identity=%s\n", Configure.Endpoint.Idenity)
+				cmd.Printf("identity=%s\n", Configure.Endpoint.Idenity)
 			case "network":
-				fmt.Printf("netork=%s\n", Configure.Endpoint.Network)
+				cmd.Printf("netork=%s\n", Configure.Endpoint.Network)
 			case "account":
-				fmt.Printf("account=%s\n", Configure.Endpoint.Account)
+				cmd.Printf("account=%s\n", Configure.Endpoint.Account)
 			case "compute":
-				fmt.Printf("compute=%s\n", Configure.Endpoint.Compute)
+				cmd.Printf("compute=%s\n", Configure.Endpoint.Compute)
 			default:
-				fmt.Printf("Error: unknown endpoint type \"" + e + "\"\n")
+				cmd.Printf("Error: unknown endpoint type \"" + e + "\"\n")
 			}
 		}
 	},
