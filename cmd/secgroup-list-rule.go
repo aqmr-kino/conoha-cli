@@ -42,6 +42,10 @@ var secgroupListRuleCmd = &cobra.Command{
 		}
 
 		// 結果出力
+		if !secgroupListRuleOpts.DetailMode {
+			cmd.Printf("%-36s %-9s %-9s %-11s %8s %s\n", "ID", "Direction", "Ethertype", "PortRange", "Protocol", "(from)")
+		}
+
 		for _, r := range sg.SecurityGroupRules {
 			if len(args) == 0 || includes(r.ID, args) {
 				if secgroupListRuleOpts.DetailMode {
@@ -56,13 +60,13 @@ var secgroupListRuleCmd = &cobra.Command{
 					cmd.Printf("Tenant ID       : %s\n", r.TenantID)
 					cmd.Println()
 				} else {
-					cmd.Printf("%s %-7s %s %d-%d %s", r.ID, r.Direction, r.Ethertype, r.PortRangeMin, r.PortRangeMax, r.Protocol)
+					cmd.Printf("%-36s %9s %9s %5d-%5d %8s", r.ID, r.Direction, r.Ethertype, r.PortRangeMin, r.PortRangeMax, r.Protocol)
 					if len(r.RemoteIPPrefix) != 0 {
-						cmd.Printf(" (from: %s)", r.RemoteIPPrefix)
+						cmd.Printf(" (ip: %s)", r.RemoteIPPrefix)
 					}
 
 					if len(r.RemoteGroupID) != 0 {
-						cmd.Printf(" (from-secgroup: %s)", r.RemoteGroupID)
+						cmd.Printf(" (secgroup: %s)", r.RemoteGroupID)
 					}
 
 					cmd.Printf("\n")

@@ -42,6 +42,10 @@ var secgroupListCmd = &cobra.Command{
 		}
 
 		// 結果出力
+		if !secgroupListOpts.DetailMode {
+			cmd.Printf("%-20s %s\n", "Name", "ID")
+		}
+
 		for _, s := range sg.SecurityGroups {
 			if len(args) == 0 || includes(s.Name, args) || includes(s.ID, args) {
 				if secgroupListOpts.DetailMode {
@@ -66,7 +70,7 @@ var secgroupListCmd = &cobra.Command{
 
 					cmd.Println()
 				} else {
-					cmd.Printf("%s %s\n", s.Name, s.ID)
+					cmd.Printf("%-20s %s\n", s.Name, s.ID)
 				}
 			}
 		}
